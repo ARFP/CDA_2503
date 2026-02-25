@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_WF_ControlesEP", "01_WF_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_WF_Validation", "01_WF_Validation\01_WF_Validation.csproj", "{3EC52317-07C8-4588-B325-53BC0F2FF025}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01_Api_Rest", "01_Api_Rest\01_Api_Rest.csproj", "{B24489BC-553D-42EC-B56E-D8BF26C79CDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3EC52317-07C8-4588-B325-53BC0F2FF025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EC52317-07C8-4588-B325-53BC0F2FF025}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EC52317-07C8-4588-B325-53BC0F2FF025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B24489BC-553D-42EC-B56E-D8BF26C79CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B24489BC-553D-42EC-B56E-D8BF26C79CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B24489BC-553D-42EC-B56E-D8BF26C79CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B24489BC-553D-42EC-B56E-D8BF26C79CDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
