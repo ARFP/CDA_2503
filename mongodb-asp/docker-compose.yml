@@ -4,8 +4,8 @@ services:
     image: mongodb/mongodb-community-server:8.2.5-ubuntu2204
     container_name: MongoDB-Achat
     environment:
-      - MONGODB_INITDB_ROOT_USERNAME=admin
-      - MONGODB_INITDB_ROOT_PASSWORD=1234
+    #  - MONGODB_INITDB_ROOT_USERNAME=admin
+    #  - MONGODB_INITDB_ROOT_PASSWORD=1234
       - MONGO_INITDB_DATABASE=Achat
     volumes:
       - Achatdb:/data/db

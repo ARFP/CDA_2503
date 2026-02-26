@@ -1,10 +1,14 @@
-﻿using System.Security;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using System.Security;
 
 namespace _01_Api_Rest.Models
 {
     public class Achat
     {
-        public int Id { get; set; }
+        [BsonId]
+        // [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 
         public string Nom { get; set; }
 
