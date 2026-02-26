@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <RootNamespace>_01_WF_ControlesEP</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\01_CL_Achat\01_CL_Achat.csproj" />
+    <ProjectReference Include="..\01_CL_RegleDeControle\01_CL_RegleDeControle.csproj" />
+    <ProjectReference Include="..\01_WF_Validation\01_WF_Validation.csproj" />
+  </ItemGroup>
+
+</Project>
