@@ -1,6 +1,18 @@
+using _01_Api_Rest.Models;
+using _01_Api_Rest.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<AchatDatabaseSettings>(
+    builder.Configuration.GetSection("AchatDatabase"));
+
+builder.Services.AddSingleton<AchatService>();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(
+        options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

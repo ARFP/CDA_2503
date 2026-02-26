@@ -146,7 +146,7 @@ public class AchatController : ControllerBase
     public async Task<List<Achat>> Get() =>
         await _achatService.GetAsync();
 
-    [HttpGet("{id:length(24)}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<Achat>> Get(string id)
     {
         var achat = await _achatService.GetAsync(id);
