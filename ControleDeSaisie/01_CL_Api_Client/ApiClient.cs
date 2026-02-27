@@ -1,4 +1,5 @@
-﻿using _01_Api_Rest.Models;
+﻿
+using _01_CL_Achat;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -12,19 +13,39 @@ namespace _01_CL_Api_Client
     {
         static HttpClient client = new HttpClient();
 
-        static void InitUrl()
+        static ApiClient()
         {
             client.BaseAddress = new Uri("https://localhost:7268/");
             client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-           
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json")
+            );
         }
 
+        /// <summary>
+        /// Emet une requête POST vers l'api
+        /// </summary>
+        /// <param name="achat">L'objet à ajouter</param>
+        /// <returns>L'URI de l'objet créé</returns>
         public static async Task<Uri> CreateAchatAsync(Achat achat)
-        {
-            InitUrl();
-
+        {       
             HttpResponseMessage response = await client.PostAsJsonAsync("api/Achat", achat);
+
+            response.EnsureSuccessStatusCode();
+
+            return response.Headers.Location;
+        }
+
+        /// <summary>
+        /// Emet une requête POST vers l'api
+        /// </summary>
+        /// <param name="json">La représentation JSON des données à ajouter</param>
+        /// <returns>L'URI de l'objet créé</returns>
+        public static async Task<Uri> CreateAchatAsyncFromJson(string json)
+        {
+            StringContent content = new StringContent(json, new MediaTypeHeaderValue("application/json"));
+
+            HttpResponseMessage response = await client.PostAsync("api/Achat", content);
 
             response.EnsureSuccessStatusCode();
 

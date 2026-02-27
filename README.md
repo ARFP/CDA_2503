@@ -41,6 +41,7 @@ volumes:
 public class Achat
 {
     [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
     public int Id { get; set; }
 
     public string Nom { get; set; }

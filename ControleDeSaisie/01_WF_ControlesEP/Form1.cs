@@ -1,10 +1,10 @@
 using _01_CL_Achat;
+using _01_CL_Api_Client;
 using _01_CL_RegleDeControle;
 using _01_WF_Validation;
 using System.ComponentModel;
-using _01_Api_Rest;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using _01_CL_Api_Client;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace _01_WF_ControlesEP
 {
@@ -219,7 +219,13 @@ namespace _01_WF_ControlesEP
             {
                 Achat nouvelAchat = new Achat(textBox_Nom.Text, dateValidee, montantValide, textBox_CodePostal.Text);
 
+               /* string monJson = JsonSerializer.Serialize<Achat>(nouvelAchat);
+
+                Uri result = await ApiClient.CreateAchatAsyncFromJson(monJson);
+*/
                 // requête POST vers l'API
+                Uri result = await ApiClient.CreateAchatAsync(nouvelAchat);
+
 
                 Form_validation validation = new Form_validation(nouvelAchat);
                 validation.ShowDialog();

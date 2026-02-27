@@ -14,7 +14,12 @@ namespace _01_WF_Validation
 
         private void button1_Click(object sender, EventArgs e)
         {
+            FormListe fListe = new FormListe();
+            fListe.Show();
             this.Close();
+            // fermer la fenêtre,
+            // afficher une nouvelle qui va lister tous les éléments enregistrés dans l'API
+
         }
     }
 }
