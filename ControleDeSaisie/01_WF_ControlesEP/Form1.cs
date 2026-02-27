@@ -4,6 +4,7 @@ using _01_WF_Validation;
 using System.ComponentModel;
 using _01_Api_Rest;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using _01_CL_Api_Client;
 
 namespace _01_WF_ControlesEP
 {
@@ -211,31 +212,14 @@ namespace _01_WF_ControlesEP
             }
         }
 
-        private void Btn_Valider_Click(object sender, EventArgs e)
+        private async void Btn_Valider_Click(object sender, EventArgs e)
         {
             // Vérifie que tous les champs sont valides.
             if (this.ValidateChildren())
             {
                 Achat nouvelAchat = new Achat(textBox_Nom.Text, dateValidee, montantValide, textBox_CodePostal.Text);
 
-                _01_Api_Rest.Models.Achat newAchat = new() {
-                    Id = "0",
-                    Nom = nouvelAchat.Nom,
-                    Montant = nouvelAchat.Montant,
-                    Date = nouvelAchat.Date,
-                    CodePostal = nouvelAchat.CodePostal
-                };
-
-                // Requete vers l'API
-                /*
-                 {
-                      "Id": "string",
-                      "Nom": "string",
-                      "Date": "2026-02-26T11:06:25.953Z",
-                      "Montant": 0,
-                      "CodePostal": "string"
-                    }
-                */
+                // requête POST vers l'API
 
                 Form_validation validation = new Form_validation(nouvelAchat);
                 validation.ShowDialog();

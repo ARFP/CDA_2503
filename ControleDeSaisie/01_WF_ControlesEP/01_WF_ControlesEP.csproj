@@ -10,8 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\01_Api_Rest\01_Api_Rest.csproj" />
     <ProjectReference Include="..\01_CL_Achat\01_CL_Achat.csproj" />
+    <ProjectReference Include="..\01_CL_Api_Client\01_CL_Api_Client.csproj" />
     <ProjectReference Include="..\01_CL_RegleDeControle\01_CL_RegleDeControle.csproj" />
     <ProjectReference Include="..\01_WF_Validation\01_WF_Validation.csproj" />
   </ItemGroup>

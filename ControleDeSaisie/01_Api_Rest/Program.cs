@@ -3,6 +3,7 @@ using _01_Api_Rest.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.Configure<AchatDatabaseSettings>(
     builder.Configuration.GetSection("AchatDatabase"));

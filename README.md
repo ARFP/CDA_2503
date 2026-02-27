@@ -1,4 +1,6 @@
 # CDA_2503
+
+# Créer le conteneur MongoDB
  
 ```docker
 # https://geshan.com.np/blog/2023/03/mongodb-docker-compose/
@@ -29,9 +31,9 @@ volumes:
   Achatdbconfigdb:
 ```
 
-Créer projet ASPNET CORE API Web
+# Créer un projet ASPNET CORE API Web
 
-Créer un Modèle
+## Créer un Modèle
 
 ```csharp
 // Models/Achat.cs
@@ -51,7 +53,7 @@ public class Achat
 }
 ```
 
-Configurer la base de données :
+## Configurer la base de données :
 
 
 /appsettings.json
@@ -73,7 +75,7 @@ Configurer la base de données :
 }
 ```
 
-Créer le  modèle de configuration (dans le répertoire Models)
+## Créer le  modèle de configuration (dans le répertoire Models)
 
 ```csharp
 // Models/AchatDatabaseSettings.cs
@@ -88,7 +90,7 @@ public class AchatDatabaseSettings
 }
 ```
 
-Créer le service CRUD (dans un dossier "Services" ^^)
+## Créer le service CRUD (dans un dossier "Services" ^^)
 
 ```csharp
 // Services/AchatService.cs
@@ -128,7 +130,7 @@ public class AchatService
 ```
 
 
-Créer le contrôleur
+## Créer le contrôleur
 
 ```csharp
 // Controllers/AchatController.cs
@@ -167,7 +169,7 @@ public class AchatController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = newAchat.Id }, newAchat);
     }
 
-    [HttpPut("{id:length(24)}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Update(string id, Achat updatedAchat)
     {
         var achat = await _achatService.GetAsync(id);
@@ -184,7 +186,7 @@ public class AchatController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id:length(24)}")]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id)
     {
         var achat = await _achatService.GetAsync(id);
@@ -201,7 +203,7 @@ public class AchatController : ControllerBase
 }
 ```
 
-Référencer l'accès à la base de données et le service dans Program.cs
+## Référencer l'accès à la base de données et le service dans Program.cs
 
 ```csharp
 // /Program.cs
@@ -215,4 +217,55 @@ builder.Services.AddSingleton<AchatService>();
 builder.Services.AddControllers()
     .AddJsonOptions(
         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+```
+
+# Créer le client HTTP (pour les requêtes vers l'API)
+
+Créer un projet type Bibliothèque de classes
+
+Ajouter une classe ApiClient
+
+```csharp
+public class ApiClient
+{
+    static HttpClient client = new HttpClient();
+
+    static void InitUrl()
+    {
+        // Remplacer l'url par celle de votre API
+        client.BaseAddress = new Uri("https://localhost:7268/");
+        client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+       
+    }
+
+    public static async Task<Uri> CreateAchatAsync(Achat achat)
+    {
+        InitUrl();
+
+        HttpResponseMessage response = await client.PostAsJsonAsync("api/Achat", achat);
+
+        response.EnsureSuccessStatusCode();
+
+        return response.Headers.Location;
+    }
+
+}
+```
+
+Référencer ce projet dans votre application.
+
+## Créer une requête POST
+
+```csharp
+Achat newAchat = new() {
+    Id = "0",
+    Nom = "Toto",
+    Montant = 55,
+    Date = "12/11/2026",
+    CodePostal = "68100"
+};
+
+// result contiendra l'url vers le nouvel élément créé
+Uri result = await ApiClient.CreateAchatAsync(newAchat);
 ```
