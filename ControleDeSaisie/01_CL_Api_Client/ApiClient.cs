@@ -25,7 +25,7 @@ namespace _01_CL_Api_Client
 
         public static async Task<List<Achat>?> GetAchatsAsync()
         {
-            HttpResponseMessage response = await client.GetAsync("api/Achat");
+            HttpResponseMessage response = await client.GetAsync("api/Achat/");
 
             response.EnsureSuccessStatusCode();
 
