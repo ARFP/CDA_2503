@@ -6,6 +6,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Collections.Generic;
 
 namespace _01_CL_Api_Client
 {
@@ -20,6 +21,19 @@ namespace _01_CL_Api_Client
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json")
             );
+        }
+
+        public static async Task<List<Achat>?> GetAchatsAsync()
+        {
+            HttpResponseMessage response = await client.GetAsync("api/Achat");
+
+            response.EnsureSuccessStatusCode();
+
+            string json = await response.Content.ReadAsStringAsync();
+
+            List<Achat>? result = JsonSerializer.Deserialize<List<Achat>>(json);
+
+            return result;
         }
 
         /// <summary>

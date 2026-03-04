@@ -43,6 +43,7 @@
             errorProviderDate = new ErrorProvider(components);
             errorProviderMontant = new ErrorProvider(components);
             errorProviderCodePostal = new ErrorProvider(components);
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)errorProviderDate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderMontant).BeginInit();
             ((System.ComponentModel.ISupportInitialize)errorProviderCodePostal).BeginInit();
@@ -166,12 +167,24 @@
             // 
             errorProviderCodePostal.ContainerControl = this;
             // 
+            // button1
+            // 
+            button1.CausesValidation = false;
+            button1.Location = new Point(12, 164);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 7;
+            button1.Text = "Liste";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             CausesValidation = false;
             ClientSize = new Size(401, 189);
+            Controls.Add(button1);
             Controls.Add(btn_Effacer);
             Controls.Add(btn_Valider);
             Controls.Add(textBox_CodePostal);
@@ -212,5 +225,6 @@
         private ErrorProvider errorProviderDate;
         private ErrorProvider errorProviderMontant;
         private ErrorProvider errorProviderCodePostal;
+        private Button button1;
     }
 }

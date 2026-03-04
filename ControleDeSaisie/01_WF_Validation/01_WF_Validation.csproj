@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\01_CL_Achat\01_CL_Achat.csproj" />
+    <ProjectReference Include="..\01_CL_Api_Client\01_CL_Api_Client.csproj" />
   </ItemGroup>
 
 </Project>

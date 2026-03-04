@@ -219,10 +219,10 @@ namespace _01_WF_ControlesEP
             {
                 Achat nouvelAchat = new Achat(textBox_Nom.Text, dateValidee, montantValide, textBox_CodePostal.Text);
 
-               /* string monJson = JsonSerializer.Serialize<Achat>(nouvelAchat);
+                /* string monJson = JsonSerializer.Serialize<Achat>(nouvelAchat);
 
-                Uri result = await ApiClient.CreateAchatAsyncFromJson(monJson);
-*/
+                 Uri result = await ApiClient.CreateAchatAsyncFromJson(monJson);
+ */
                 // requête POST vers l'API
                 Uri result = await ApiClient.CreateAchatAsync(nouvelAchat);
 
@@ -235,6 +235,13 @@ namespace _01_WF_ControlesEP
                 // Si la validation échoue, les ErrorProviders seront affichés automatiquement
                 MessageBox.Show("Veuillez corriger les erreurs sur le formulaire.", "Erreur de validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormListe fListe = new FormListe();
+            fListe.ShowDialog();
+
         }
 
         //private void AfficherErreur(Control controle, ErrorProvider provider, string messageErreur, CancelEventArgs e)
