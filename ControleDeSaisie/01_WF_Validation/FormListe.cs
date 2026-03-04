@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using _01_CL_Api_Client;
+using System.Diagnostics;
 
 namespace _01_WF_Validation
 {
@@ -28,11 +29,21 @@ namespace _01_WF_Validation
         {
             achats = await ApiClient.GetAchatsAsync();
 
-            dataGridView1.DataSource = achats;
+            bindingSource1.DataSource = achats;
 
-            /*bindingSource1.DataSource = achats;
+            dataGridView1.DataSource = bindingSource1;
 
-            dataGridView1.DataSource = bindingSource1;*/
+            // Ne pas afficher la 1ere colonne
+            dataGridView1.Columns[0].Visible = false;
+
+            dataGridView1.Columns[1].HeaderText = "TOTO";
+
+            dataGridView1.CellDoubleClick += Cell_DoubleClick;
+        }
+
+        public async void Cell_DoubleClick(object? sender, EventArgs args)
+        {
+            Debug.Write(sender);
         }
     }
 }
